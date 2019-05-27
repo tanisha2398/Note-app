@@ -1,27 +1,37 @@
 console.log('staring notes.js');
 const fs = require('fs');
 
+var fetchNote = () => {
+    try{
+        var noteString= fs.readFileSync('notes-data.json');
+        return JSON.parse(noteString);
+        // console.log("this is object",notes);
+        }
+        catch(e){
+            return [];
+        }
+};
+
+var saveNotes = (notes) =>{
+    fs.writeFileSync('notes-data.json',JSON.stringify(notes)); 
+};
+
+
 var addNote =(title,body) => {
     // console.log('adding note',title,body);
-    var notes = [];
+    var notes = fetchNote();
     var note = {
         title,
         body
     };
-    try{
-    var noteString= fs.readFileSync('notes-data.json');
-    notes=JSON.parse(noteString);
-    // console.log("this is object",notes);
-    }
-    catch(e){
-
-    }
+    
 
     var duplicateNotes=notes.filter((note)=> note.title === title);
     
     if(duplicateNotes.length === 0){
     notes.push(note);
-    fs.writeFileSync('notes-data.json',JSON.stringify(notes)); 
+    saveNotes(notes);
+    return note;
     }
     
 };
