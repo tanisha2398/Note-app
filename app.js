@@ -19,7 +19,7 @@ if(command === 'add'){
     // console.log("add the note");
     var note = notes.addNote(argv.title,argv.body);
     // console.log(typeof note);
-    if(typeof note === 'object'){
+    if(note){
         console.log("note created");
         console.log("================");
         console.log(`Title ${note.title}`);
@@ -31,7 +31,9 @@ if(command === 'add'){
 }else if(command === 'read'){
     notes.readNote(argv.title);
 }else if(command === 'remove'){
-    notes.removeNote(argv.title);
+    var noteRemoved = notes.removeNote(argv.title);
+    var message = noteRemoved ? "note is removed" : "note not found";
+    console.log(message); 
 }else{
     console.log('command not recognized')
 }
