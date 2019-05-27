@@ -7,7 +7,7 @@ const _ = require('lodash');
 
 
 const argv = yargs.argv;
-var command = process.argv[2];
+var command = argv._[0];
 
 
 
