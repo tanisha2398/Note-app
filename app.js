@@ -2,9 +2,31 @@ const fs = require('fs');
 const yargs = require('yargs');
 const notes = require('./notes.js');
 const _ = require('lodash');
+var titleOption={
+    describe: 'Title of Note',
+    demand: true,
+    alias: 't'
+};
+var bodyOption={
+    describe: "Body of Note",
+    demand:true,
+    alias: 'b'
+};
 
-
-const argv = yargs.argv;
+const argv = yargs
+.command('add','Add a new Note',{
+ title:titleOption,
+ body:bodyOption
+})
+.command('list','Display list of all Notes')
+.command('read','Read a note',{
+    title:titleOption
+})
+.command('remove','Remove a note',{
+    title:titleOption
+})
+.help()
+.argv;
 var command = argv._[0];
 
 
