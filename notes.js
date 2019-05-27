@@ -1,4 +1,3 @@
-console.log('staring notes.js');
 const fs = require('fs');
 
 var fetchNote = () => {
@@ -36,7 +35,8 @@ var addNote =(title,body) => {
     
 };
 var getAll =()=>{
-    console.log('getting all notes');
+    // console.log('getting all notes');
+    return fetchNote();
 };
 
 var readNote =(title) => {
@@ -55,7 +55,7 @@ var removeNote =(title) => {
 };
 
 var logNote =(note)=>{
-    debugger;
+    // debugger;
     console.log("===================");
     console.log(`Title ${note.title}`);
     console.log(`body: ${note.body}`);
